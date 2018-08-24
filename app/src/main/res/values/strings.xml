@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MyKotlin</string>
+    <string name="main_titlebar">黑马影音</string>
+    <string name="setting_titlebar">设置界面</string>
+
+</resources>
