@@ -35,8 +35,6 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeHolder>() {
         }else{
             return HomeHolder(HomeItemView(parent.context))
         }
-
-       return HomeHolder(HomeItemView(parent.context))
     }
 
     override fun getItemCount(): Int {

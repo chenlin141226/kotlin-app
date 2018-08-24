@@ -89,6 +89,6 @@ class HomeFragment : BaseFragment(), HomeView {
     override fun onDestroy() {
         super.onDestroy()
         //解绑presenter
-        presenter.destoryView()
+        //presenter.destoryView()
     }
 }
