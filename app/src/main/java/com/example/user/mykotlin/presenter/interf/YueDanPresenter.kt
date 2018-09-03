@@ -1,6 +1,6 @@
 package com.example.user.mykotlin.presenter.interf
 
-interface YueDanPresenter {
-    fun loadDatas()
-    fun loadMore(offset: Int)
+import com.example.user.mykotlin.base.BaseListPresenter
+
+interface YueDanPresenter : BaseListPresenter{
 }

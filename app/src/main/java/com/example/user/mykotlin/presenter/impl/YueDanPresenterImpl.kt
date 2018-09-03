@@ -1,19 +1,26 @@
 package com.example.user.mykotlin.presenter.impl
 
+import com.example.user.mykotlin.base.BaseView
 import com.example.user.mykotlin.net.ResponseHandler
 import com.example.user.mykotlin.net.YueDanRequest
 import com.example.user.mykotlin.presenter.interf.YueDanPresenter
 import com.example.user.mykotlin.view.YueDanView
 import com.itheima.player.model.bean.YueDanBean
 
-class YueDanPresenterImpl(var yuedanView : YueDanView) : YueDanPresenter, ResponseHandler<YueDanBean> {
+class YueDanPresenterImpl(var yuedanView : BaseView<YueDanBean>?) : YueDanPresenter, ResponseHandler<YueDanBean> {
+    override fun destoryView() {
+         if(yuedanView != null){
+             yuedanView = null
+         }
+    }
+
     val TYPE_INIT_OR_REFRESH = 1
     val TYPE_LOAD_MORE = 2
     /**
      * 加载数据失败
      */
     override fun onError(type: Int, msg: String?) {
-        yuedanView.onError(msg)
+        yuedanView?.onError(msg)
     }
 
 
@@ -22,9 +29,9 @@ class YueDanPresenterImpl(var yuedanView : YueDanView) : YueDanPresenter, Respon
      */
     override fun onSuccess(type: Int, result: YueDanBean) {
         when(type){
-            TYPE_INIT_OR_REFRESH ->  yuedanView.loadSuccess(result)
+            TYPE_INIT_OR_REFRESH ->  yuedanView?.loadSuccess(result)
 
-            TYPE_LOAD_MORE -> yuedanView.loadMore(result)
+            TYPE_LOAD_MORE -> yuedanView?.loadMore(result)
         }
 
     }

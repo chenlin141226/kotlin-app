@@ -1,5 +1,6 @@
 package com.example.user.mykotlin.presenter.impl
 
+import com.example.user.mykotlin.base.BaseView
 import com.example.user.mykotlin.net.HomeRequest
 import com.example.user.mykotlin.net.ResponseHandler
 import com.example.user.mykotlin.presenter.interf.HomePresenter
@@ -9,7 +10,7 @@ import com.itheima.player.model.bean.HomeItemBean
 /**
  * homeView的实现类
  */
-class HomePresenterImpl(var homeView: HomeView?) : HomePresenter, ResponseHandler<List<HomeItemBean>> {
+class HomePresenterImpl(var homeView: BaseView<List<HomeItemBean>>?) : HomePresenter, ResponseHandler<List<HomeItemBean>> {
 
     val TYPE_INIT_OR_REFRESH = 1
     val TYPE_LOAD_MORE = 2
@@ -17,7 +18,7 @@ class HomePresenterImpl(var homeView: HomeView?) : HomePresenter, ResponseHandle
     /**
      * 解绑view和presenter
      */
-    fun destoryView(){
+    override fun destoryView(){
         if(homeView!=null){
             homeView = null
         }
