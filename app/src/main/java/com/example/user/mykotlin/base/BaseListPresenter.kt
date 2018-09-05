@@ -6,7 +6,7 @@ package com.example.user.mykotlin.base
 interface BaseListPresenter {
 
     fun loadDatas()
-    fun loadMore(i: Int)
+    fun loadMore(offset: Int)
 
     //解绑presenter和view层
     fun destoryView()

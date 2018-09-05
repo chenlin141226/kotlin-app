@@ -10,20 +10,21 @@ import com.itheima.player.model.bean.MvAreaBean
 import kotlinx.android.synthetic.main.mv_fragment.*
 
 class MVFragment : BaseFragment(), MvView {
+
+    val presenter by lazy { MvPresenterImpl(this) }
+
     override fun onErro(msg: String?) {
        myToast("加载失败")
     }
 
     override fun loadSuccess(result: List<MvAreaBean>) {
-       myToast("加载数据成功")
+        myToast("加载数据成功")
         //在Fragment中管里Fragment需要用childFragmentManager
         val adapter = MvPagerAdapter(context,result,childFragmentManager)
         viewPager.adapter = adapter
         tableLayout.setupWithViewPager(viewPager)
     }
 
-
-    val presenter by lazy { MvPresenterImpl(this) }
 
     override fun initView(): View? {
         return View.inflate(context, R.layout.mv_fragment, null)

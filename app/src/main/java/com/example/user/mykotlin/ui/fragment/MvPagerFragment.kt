@@ -1,30 +1,34 @@
 package com.example.user.mykotlin.ui.fragment
 
-import android.graphics.Color
-import android.view.Gravity
-import android.view.View
-import android.widget.TextView
-import com.example.user.mykotlin.base.BaseFragment
+import com.example.user.mykotlin.adapter.MvListAdapter
+import com.example.user.mykotlin.base.BaseListAdapter
+import com.example.user.mykotlin.base.BaseListFragment
+import com.example.user.mykotlin.base.BaseListPresenter
+import com.example.user.mykotlin.presenter.impl.MvListPresenterImpl
+import com.example.user.mykotlin.view.MvListView
+import com.example.user.mykotlin.widget.MvItemView
+import com.itheima.player.model.bean.MvPagerBean
+import com.itheima.player.model.bean.VideosBean
 
 /**
- * mv界面每一个
+ * mv界面每一个Fragment
  */
-class MvPagerFragment : BaseFragment() {
+class MvPagerFragment : BaseListFragment<MvPagerBean,VideosBean,MvItemView>(), MvListView {
+    var code : String? = null
 
-    var name : String? = null
     override fun init() {
-        //获取传递的数据
-        name = arguments?.getString("args")
+        code = arguments?.getString("args")
+    }
+    override fun getSpecialAdapter(): BaseListAdapter<VideosBean, MvItemView> {
+        return MvListAdapter()
     }
 
-    override fun initView(): View? {
-       // val view = View.inflate(context, R.layout.pager_fragment, null)
+    override fun getSpecialPresenter(): BaseListPresenter {
+        return MvListPresenterImpl(code!!,this)
+    }
 
-        val tv = TextView(context)
-        tv.gravity = Gravity.CENTER
-        tv.setTextColor(Color.RED)
-        tv.text = javaClass.simpleName+name
-        return tv
+    override fun getList(response: MvPagerBean?): List<VideosBean>? {
+        return response?.videos
     }
 
 }

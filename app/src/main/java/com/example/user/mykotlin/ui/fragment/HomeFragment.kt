@@ -26,9 +26,9 @@ class HomeFragment :BaseListFragment<List<HomeItemBean>,HomeItemBean,HomeItemVie
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
-        //解绑presenter
-        presenter.destoryView()
-    }
+    super.onDestroyView()
+    //解绑presenter
+    presenter.destoryView()
+}
 
 }
